@@ -1,6 +1,6 @@
 # Capistrano::Env
 
-TODO: Write a gem description
+Capistrano with Env via file
 
 ## Installation
 
@@ -18,7 +18,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+
+#### 1. set env names in deploy.rb
+
+```ruby
+capistrano_envs /^MYAPP_/
+capistrano_envs 'UNICORN_PROCESSES'
+capistrano_envs ...
+```
+
+#### 2. deploy
+
+```
+bundle exec cap production deploy
+```
+
+- automaticaly create #{current_path}/env.rb
+- automaticaly load #{current_path}/env.rb in rails boot
+  - you should load manualy in other framework
+- you can use ENV['ENV_NAME'] in application
 
 ## Contributing
 
