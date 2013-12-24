@@ -5,3 +5,5 @@ module Capistrano
     # Your code goes here...
   end
 end
+
+require "capistrano/env/strategy"
