@@ -2,7 +2,26 @@ require 'spec_helper'
 
 describe Capistrano::Env::Config do
   let(:config) { described_class.new }
-  it { expect(config.formatter).to eq :ruby }
+  describe :formatter do
+    it { expect(config.formatter).to eq :ruby }
+  end
+
+  describe :formatter_class do
+    it { expect(config.formatter_class).to eq Capistrano::Env::Formatter::RubyFormatter }
+  end
+
+  describe :capenv_file do
+    it { expect(config.capenv_file).to eq "capenv.rb" }
+  end
+
+  describe :capenv_content do
+    it {
+      require 'capistrano/env/formatter/ruby_formatter'
+      allow(config).to receive(:envs).and_return( { "a" => "b" } )
+      expect(Capistrano::Env::Formatter::RubyFormatter).to receive(:format).with({"a" => "b"}).and_return "hello"
+      expect(config.capenv_content).to eq "hello"
+    }
+  end
 
   describe :add do
     before do

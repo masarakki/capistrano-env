@@ -1,7 +1,7 @@
 module Capistrano
   module Env
     class Config
-      attr_reader :formatter
+      attr_accessor :formatter
 
       def initialize
         @formatter = :ruby
@@ -17,8 +17,11 @@ module Capistrano
         end
       end
 
-      def formatter=(formatter)
-        @fomatter = formatter
+      def formatter_class
+        @formatter_class ||= begin
+                               require "capistrano/env/formatter/#{@formatter}_formatter"
+                               Capistrano::Env::Formatter.const_get "#{formatter.capitalize}Formatter"
+                             end
       end
 
       def envs
@@ -33,6 +36,14 @@ module Capistrano
           result.merge!(key_values)
         end
         result.merge(@values)
+      end
+
+      def capenv_file
+        "capenv.#{formatter_class.file_ext}"
+      end
+
+      def capenv_content
+        formatter_class.format(envs)
       end
     end
   end

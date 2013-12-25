@@ -2,7 +2,8 @@ require "capistrano/env/version"
 
 module Capistrano
   module Env
-    # Your code goes here...
+    module Formatter
+    end
   end
 end
 
