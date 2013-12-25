@@ -22,9 +22,11 @@ Or install it yourself as:
 #### 1. set env names in deploy.rb
 
 ```ruby
-capistrano_envs /^MYAPP_/
-capistrano_envs 'UNICORN_PROCESSES'
-capistrano_envs ...
+capenv.use do |env|
+  env.add /^MYAPP_/
+  env.add 'UNICORN_PROCESSES'
+  env.add 'HOGE', 'hage'
+end
 ```
 
 #### 2. deploy

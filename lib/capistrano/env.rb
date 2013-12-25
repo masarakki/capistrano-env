@@ -6,4 +6,6 @@ module Capistrano
   end
 end
 
-require "capistrano/env/strategy"
+require "capistrano"
+require "capistrano/env/plugin"
+require "capistrano/env/config"
