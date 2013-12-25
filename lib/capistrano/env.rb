@@ -10,3 +10,4 @@ end
 require "capistrano"
 require "capistrano/env/plugin"
 require "capistrano/env/config"
+require "capistrano/env/railtie" if defined? Rails
