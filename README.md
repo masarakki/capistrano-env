@@ -35,8 +35,8 @@ end
 bundle exec cap production deploy
 ```
 
-- automaticaly create #{current_path}/env.rb
-- automaticaly load #{current_path}/env.rb in rails boot
+- automaticaly create #{current_path}/capenv.rb
+- automaticaly load #{current_path}/capenv.rb in rails boot
   - you should load manualy in other framework
 - you can use ENV['ENV_NAME'] in application
 
