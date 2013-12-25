@@ -10,10 +10,14 @@ module Capistrano
 
       def add(config)
         namespace :deploy do
-          namespace :copy_env do
+          namespace :capenv do
+            task :copy do
+              parent.parent.upload StringIO.new(config.capenv_content), "#{fetch(:current_path)}/#{config.capenv_file}"
+            end
           end
         end
-#        after 'deploy', "deploy:notify:#{task_name}"
+        after 'deploy:finalize_update', 'deploy:capenv:copy'
+        before 'deploy:restart', 'deploy:capenv:copy'
       end
     end
   end
