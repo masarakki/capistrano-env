@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'capistrano'
 
 describe Capistrano::Env::Plugin do
   let(:capistrano) { Capistrano::Configuration.new }

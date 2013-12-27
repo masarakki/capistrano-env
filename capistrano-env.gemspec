@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "rspec-rails", '~> 3.0.0.beta'
   spec.add_development_dependency "sqlite3"
-  spec.add_development_dependency "capistrano"
+  spec.add_development_dependency "capistrano", '~> 2'
 end
