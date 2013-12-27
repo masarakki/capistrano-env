@@ -23,4 +23,4 @@ module Capistrano
   end
 end
 
-Capistrano.plugin :capenv, Capistrano::Env::Plugin
+Capistrano.plugin :capenv, Capistrano::Env::Plugin if Capistrano.respond_to?(:plugin)
