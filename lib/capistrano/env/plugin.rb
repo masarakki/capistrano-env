@@ -12,7 +12,7 @@ module Capistrano
         namespace :deploy do
           namespace :capenv do
             task :copy do
-              parent.parent.upload StringIO.new(config.capenv_content), "#{fetch(:current_path)}/#{config.capenv_file}"
+              parent.parent.upload StringIO.new(config.capenv_content), "#{fetch(:release_path)}/#{config.capenv_file}"
             end
           end
         end
