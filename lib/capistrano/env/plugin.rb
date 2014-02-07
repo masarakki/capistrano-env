@@ -1,3 +1,4 @@
+require 'pry'
 module Capistrano
   module Env
     module Plugin
@@ -11,13 +12,18 @@ module Capistrano
       def add(config)
         namespace :deploy do
           namespace :capenv do
-            task :copy do
-              parent.parent.upload StringIO.new(config.capenv_content), "#{fetch(:release_path)}/#{config.capenv_file}"
+            namespace :copy do
+              [:release, :current].each do |type|
+                task type do
+                  path = fetch "#{type}_path".to_sym
+                  parent.parent.parent.upload StringIO.new(config.capenv_content), "#{path}/#{config.capenv_file}"
+                end
+              end
             end
           end
         end
-        after 'deploy:finalize_update', 'deploy:capenv:copy'
-        before 'deploy:restart', 'deploy:capenv:copy'
+        after 'deploy:finalize_update', 'deploy:capenv:copy:release'
+        before 'deploy:restart', 'deploy:capenv:copy:current'
       end
     end
   end
