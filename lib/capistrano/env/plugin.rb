@@ -6,6 +6,7 @@ module Capistrano
         config = Capistrano::Env::Config.new
         yield(config)
         add config
+        set :default_environment, config.envs
         config
       end
 
