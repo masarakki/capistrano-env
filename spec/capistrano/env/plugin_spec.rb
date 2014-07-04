@@ -4,10 +4,10 @@ require 'capistrano'
 describe Capistrano::Env::Plugin do
   let(:capistrano) { Capistrano::Configuration.new }
 
-  describe :capenv do
+  describe "#capenv" do
     let(:setup) { capistrano.capenv.use {|config| config.add "HELLO", "WORLD" } }
 
-    it 'add task' do
+    it "add task" do
       expect(capistrano.capenv).to receive(:add)
       setup
     end
