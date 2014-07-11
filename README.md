@@ -24,6 +24,9 @@ Or install it yourself as:
 ```ruby
 capenv.use do |env|
   env.add /^MYAPP_/
+  env.add /^MYAPP_/ do |key|
+     key.gsub /^MYAPP_/, '' # replace keyname like MYAPP_DATABASE_URL => DATABASE_URL
+  end
   env.add 'UNICORN_PROCESSES'
   env.add 'HOGE', 'hage'
 end
