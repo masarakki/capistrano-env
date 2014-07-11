@@ -50,5 +50,14 @@ describe Capistrano::Env::Config do
       end
       it { expect(config.envs).to eq({"CAPENV_TEST_A" => "a", "CAPENV_TEST_B" => "UNKO"}) }
     end
+    describe "fix key with block" do
+      before do
+        config.add /^CAPENV_TEST_/
+        config.add /^CAPENV_TEST_/ do |key|
+          key.gsub(/CAPENV_/, '')
+        end
+      end
+      it { expect(config.envs).to eq({"CAPENV_TEST_A" => "a", "CAPENV_TEST_B" => "1,2,3", "TEST_A" => "a", "TEST_B" => "1,2,3"}) }
+    end
   end
 end
