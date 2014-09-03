@@ -1,4 +1,3 @@
-require 'pry'
 module Capistrano
   module Env
     module Plugin
