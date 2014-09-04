@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Capistrano::Env do
   it 'should have a version number' do
