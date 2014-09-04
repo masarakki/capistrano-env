@@ -1,0 +1,10 @@
+Metrics/LineLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FileName:
+  Enabled: false
+Style/RegexpLiteral:
+  MaxSlashes: 0

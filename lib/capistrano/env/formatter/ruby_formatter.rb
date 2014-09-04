@@ -3,7 +3,7 @@ module Capistrano
     module Formatter
       class RubyFormatter
         def self.file_ext
-          "rb"
+          'rb'
         end
 
         def self.format(envs)
