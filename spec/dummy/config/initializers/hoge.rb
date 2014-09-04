@@ -1,1 +1,1 @@
-Rails.configuration.hoge = ENV["HOGE"]
+Rails.configuration.hoge = ENV['HOGE']

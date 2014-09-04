@@ -27,16 +27,8 @@ module Capistrano
       def envs
         result = {}
         @keys.each do |key, block|
-          key_values = if key.is_a? Regexp
-                         ENV.select{|x| x =~ key }
-                       else
-                         ENV.select{|x| x == key }
-                       end
-          if block
-            key_values = Hash[key_values.map do |k, v|
-              [block.call(k), v]
-            end]
-          end
+          key_values = key.is_a?(Regexp) ? ENV.select { |x| x =~ key } : ENV.select { |x| x == key }
+          key_values = Hash[key_values.map { |k, v| [block.call(k), v] }] if block
           result.merge!(key_values)
         end
         result.merge(@values)
