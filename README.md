@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/masarakki/capistrano-env.svg?branch=master)](https://travis-ci.org/masarakki/capistrano-env)
+[![Build Status](https://travis-ci.org/masarakki/capistrano-env.svg?branch=master)](https://travis-ci.org/masarakki/capistrano-env?branch=master)
 [![Dependency Status](https://gemnasium.com/masarakki/capistrano-env.svg)](https://gemnasium.com/masarakki/capistrano-env)
-[![Coverage Status](https://coveralls.io/repos/masarakki/capistrano-env/badge.png?branch=master)](https://coveralls.io/r/masarakki/capistrano-env)
+[![Coverage Status](https://img.shields.io/coveralls/masarakki/capistrano-env.svg)](https://coveralls.io/r/masarakki/capistrano-env?branch=master)
 
 # Capistrano::Env
 Capistrano with Env via file
