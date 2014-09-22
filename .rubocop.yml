@@ -7,4 +7,4 @@ Style/Documentation:
 Style/FileName:
   Enabled: false
 Style/RegexpLiteral:
-  MaxSlashes: 0
+  Enabled: false
