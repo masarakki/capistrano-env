@@ -5,6 +5,12 @@
 # Capistrano::Env
 Capistrano with Env via file
 
+## Notice!
+
+`ruby_formatter` will deprecated at `0.2.x` and it will be removed at next version (`>= 0.3`).
+Now `dotenv_formatter` is avaiable, it create `.env` file instead of `capenv.rb` file,
+and use `dotenv` or `dotenv-rails` gem to read `.env` file.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -32,6 +38,7 @@ capenv.use do |env|
   end
   env.add 'UNICORN_PROCESSES'
   env.add 'HOGE', 'hage'
+  env.formatter = :dotenv #=> default is :ruby, but it is deprecated now.
 end
 ```
 
@@ -41,8 +48,8 @@ end
 bundle exec cap production deploy
 ```
 
-- automaticaly create #{current_path}/capenv.rb
-- automaticaly load #{current_path}/capenv.rb in rails boot
+- automaticaly create #{current_path}/.env
+- automaticaly load #{current_path}/.env if you use dotenv-rails
   - you should load manualy in other framework
 - you can use ENV['ENV_NAME'] in application
 
