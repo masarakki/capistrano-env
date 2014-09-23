@@ -1,8 +1,8 @@
 module Capistrano
   module Env
     module Formatter
-      class RubyFormatter
-        def self.file_ext
+      class RubyFormatter < Base
+        def self.extname
           'rb'
         end
 

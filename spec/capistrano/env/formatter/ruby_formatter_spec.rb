@@ -8,4 +8,5 @@ ENV["HELLO"] = "WORLD"
 ENV["HOGE"] = "1,2,3"
 EOF
   it { expect(described_class.format(envs)).to eq expect_string }
+  it { expect(described_class.filename).to eq 'capenv.rb' }
 end

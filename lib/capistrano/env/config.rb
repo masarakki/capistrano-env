@@ -4,9 +4,18 @@ module Capistrano
       attr_accessor :formatter
 
       def initialize
-        @formatter = :ruby
         @values = {}
         @keys = []
+      end
+
+      def formatter
+        self.formatter = :ruby unless @formatter
+        @formatter
+      end
+
+      def formatter=(value)
+        warn 'formatter :ruby is deprecated! use :dotenv with dotenv(-rails).gem' if value == :ruby
+        @formatter = value
       end
 
       def add(name_or_regexp, val = nil, &block)
@@ -19,7 +28,7 @@ module Capistrano
 
       def formatter_class
         @formatter_class ||= begin
-                               require "capistrano/env/formatter/#{@formatter}_formatter"
+                               require "capistrano/env/formatter/#{formatter}_formatter"
                                Capistrano::Env::Formatter.const_get "#{formatter.capitalize}Formatter"
                              end
       end
@@ -35,7 +44,7 @@ module Capistrano
       end
 
       def capenv_file
-        "capenv.#{formatter_class.file_ext}"
+        formatter_class.filename
       end
 
       def capenv_content
