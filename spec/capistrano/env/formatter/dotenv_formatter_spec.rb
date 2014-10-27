@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'gem_helper'
 require 'capistrano/env/formatter/dotenv_formatter'
 
 describe Capistrano::Env::Formatter::DotenvFormatter do

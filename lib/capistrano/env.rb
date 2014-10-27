@@ -1,17 +1,27 @@
-require 'capistrano/env/version'
+require 'capistrano/env/config'
 
 module Capistrano
   module Env
-    module Formatter
-      class Base
-        def self.filename
-          "capenv.#{extname}"
-        end
-      end
+    def self.use(&block)
+      block.call(config)
+    end
+
+    def self.envs
+      config.envs
+    end
+
+    def self.to_s
+      config.capenv_content
+    end
+
+    def self.filename
+      config.capenv_file
+    end
+
+    private
+
+    def self.config
+      @config ||= Capistrano::Env::Config.new
     end
   end
 end
-
-require 'capistrano/env/plugin'
-require 'capistrano/env/config'
-require 'capistrano/env/railtie' if defined? Rails

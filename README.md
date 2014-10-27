@@ -27,10 +27,15 @@ Or install it yourself as:
 
 ## Usage
 
+### 1. set env names in deploy.rb
 
-#### 1. set env names in deploy.rb
+#### Capistrano 2.x
+
+in `deploy.rb`
 
 ```ruby
+require 'capistrano/env/v2'
+
 capenv.use do |env|
   env.add /^MYAPP_/
   env.add /^MYAPP_/ do |key|
@@ -42,7 +47,29 @@ capenv.use do |env|
 end
 ```
 
-#### 2. deploy
+#### Capistrano 3.x
+
+in `Capfile`
+
+```ruby
+require 'capistrano/env/v3'
+```
+
+in `deploy.rb`
+
+```ruby
+Capistrano::Env.use do |env|
+  env.add /^MYAPP_/
+  env.add /^MYAPP_/ do |key|
+     key.gsub /^MYAPP_/, '' # replace keyname like MYAPP_DATABASE_URL => DATABASE_URL
+  end
+  env.add 'UNICORN_PROCESSES'
+  env.add 'HOGE', 'hage'
+  env.formatter = :dotenv #=> default is :ruby, but it is deprecated now.
+end
+```
+
+### 2. deploy
 
 ```
 bundle exec cap production deploy
