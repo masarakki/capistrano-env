@@ -27,4 +27,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'sqlite3'
   spec.add_development_dependency 'capistrano', '~> 2'
+  spec.add_development_dependency 'guard'
+  spec.add_development_dependency 'guard-rspec'
+  spec.add_development_dependency 'guard-rubocop'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'pry-doc'
+  spec.add_development_dependency 'coveralls'
 end
