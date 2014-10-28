@@ -1,3 +1,5 @@
+require 'capistrano/env/formatter'
+
 module Capistrano
   module Env
     class Config
@@ -9,14 +11,11 @@ module Capistrano
       end
 
       def formatter
-        self.formatter = :ruby unless @formatter
+        self.formatter = :dotenv unless @formatter
         @formatter
       end
 
-      def formatter=(value)
-        warn 'formatter :ruby is deprecated! use :dotenv with dotenv(-rails).gem' if value == :ruby
-        @formatter = value
-      end
+      attr_writer :formatter
 
       def add(name_or_regexp, val = nil, &block)
         if val && name_or_regexp.is_a?(String)

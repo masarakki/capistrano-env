@@ -1,3 +1,0 @@
-ENV['HELLO'] = 'WORLD'
-ENV['HOGE'] = 'HAGE'
-ENV['TEST'] = '1,2,3'
