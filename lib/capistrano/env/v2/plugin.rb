@@ -24,7 +24,7 @@ module Capistrano
             end
           end
         end
-        after 'deploy:finalize_update', 'deploy:capenv:copy:release'
+        before 'deploy:finalize_update', 'deploy:capenv:copy:release'
         before 'deploy:restart', 'deploy:capenv:copy:current'
       end
     end
