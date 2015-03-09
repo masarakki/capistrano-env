@@ -15,5 +15,5 @@ stages.each do |stage|
   after stage, 'capenv:set_envs'
 end
 
-after 'deploy:updating', 'capenv:copy'
+after 'deploy:updated', 'capenv:copy'
 before 'deploy:restart', 'capenv:copy'
