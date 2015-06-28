@@ -4,6 +4,7 @@ module Capistrano
   module Env
     class Config
       attr_accessor :formatter
+      attr_accessor :filemode
 
       def initialize
         @values = {}
@@ -15,7 +16,13 @@ module Capistrano
         @formatter
       end
 
+      def filemode
+        self.filemode = '0640' unless @filemode
+        @filemode
+      end
+
       attr_writer :formatter
+      attr_writer :filemode
 
       def add(name_or_regexp, val = nil, &block)
         if val && name_or_regexp.is_a?(String)
@@ -48,6 +55,10 @@ module Capistrano
 
       def capenv_content
         formatter_class.format(envs)
+      end
+
+      def capenv_filemode
+        filemode
       end
     end
   end

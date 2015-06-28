@@ -66,6 +66,7 @@ Capistrano::Env.use do |env|
   env.add 'UNICORN_PROCESSES'
   env.add 'HOGE', 'hage'
   env.formatter = :dotenv #=> default is :ruby, but it is deprecated now.
+  env.filemode = 0644 #=> default is 0640.
 end
 ```
 
