@@ -18,6 +18,10 @@ module Capistrano
       config.capenv_file
     end
 
+    def self.filemode
+      config.capenv_filemode
+    end
+
     private
 
     def self.config
