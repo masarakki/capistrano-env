@@ -1,3 +1,7 @@
+AllCops:
+  Exclude:
+    - vendor/bundle/**/*
+    - gemfiles/vendor/bundle/**/*
 Metrics/AbcSize:
   Enabled: false
 Metrics/LineLength:
