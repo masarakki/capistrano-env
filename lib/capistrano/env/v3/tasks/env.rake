@@ -1,7 +1,10 @@
+require 'pry'
+
 namespace :capenv do
   desc 'copy .env to release_path'
   task :copy do
     on roles(:all) do
+      binding.pry
       upload! StringIO.new(Capistrano::Env.to_s), "#{release_path}/#{Capistrano::Env.filename}", mode: Capistrano::Env.filemode
     end
   end
