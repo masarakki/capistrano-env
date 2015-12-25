@@ -2,8 +2,9 @@ language: ruby
 sudo: false
 cache: bundler
 rvm:
-  - 2.1.5
-  - 2.2.2
+  - 2.1.8
+  - 2.2.4
+  - 2.3.0
 gemfile:
   - gemfiles/cap3.gemfile
   - gemfiles/cap2.gemfile
