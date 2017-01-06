@@ -4,6 +4,8 @@ AllCops:
     - gemfiles/vendor/bundle/**/*
 Metrics/AbcSize:
   Enabled: false
+Metrics/BlockLength:
+  Enabled: false
 Metrics/LineLength:
   Enabled: false
 Metrics/MethodLength:

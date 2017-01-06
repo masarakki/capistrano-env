@@ -22,8 +22,6 @@ module Capistrano
       config.capenv_filemode
     end
 
-    private
-
     def self.config
       @config ||= Capistrano::Env::Config.new
     end

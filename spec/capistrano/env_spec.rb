@@ -11,4 +11,5 @@ describe Capistrano::Env do
   it { expect(Capistrano::Env.to_s.chomp).to eq 'HELLO="WORLD"' }
   it { expect(Capistrano::Env.envs).to eq 'HELLO' => 'WORLD' }
   it { expect(Capistrano::Env.filename).to eq '.env' }
+  it { expect(Capistrano::Env.filemode).to eq '0640' }
 end
