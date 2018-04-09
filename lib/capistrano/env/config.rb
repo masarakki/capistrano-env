@@ -3,9 +3,6 @@ require 'capistrano/env/formatter'
 module Capistrano
   module Env
     class Config
-      attr_accessor :formatter
-      attr_accessor :filemode
-
       def initialize
         @values = {}
         @keys = []
