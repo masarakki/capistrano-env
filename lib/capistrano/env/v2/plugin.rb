@@ -15,7 +15,7 @@ module Capistrano
         namespace :deploy do
           namespace :capenv do
             namespace :copy do
-              [:release, :current].each do |type|
+              %i[release current].each do |type|
                 task type do
                   path = fetch "#{type}_path".to_sym
                   parent.parent.parent.upload StringIO.new(config.capenv_content), "#{path}/#{config.capenv_file}"

@@ -15,7 +15,8 @@ guard :rspec, cmd: 'bundle exec rspec' do
   watch('spec/spec_helper.rb')  { 'spec' }
 end
 
-guard :rubocop, cli: '-aD' do
+guard :rubocop, cli: '-aD --except Lint/Debugger' do
+  watch('Gemfile')
   watch(%r{.+\.rb$})
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
