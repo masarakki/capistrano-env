@@ -15,6 +15,5 @@ RSpec.describe Capistrano::Env::Builder do
   let(:expect_string) { "HELLO=\"WORLD\"\nHOGE=\"1,2,3\"\n" }
 
   subject { target.new }
-  it { expect(subject.content).to eq expect_string }
-  it { expect(subject.filename).to eq '.env' }
+  its(:content) { is_expected.to eq expect_string }
 end

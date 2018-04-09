@@ -2,17 +2,13 @@ AllCops:
   Exclude:
     - vendor/bundle/**/*
     - gemfiles/vendor/bundle/**/*
-Metrics/AbcSize:
-  Enabled: false
 Metrics/BlockLength:
-  Enabled: false
+  Exclude:
+    - spec/**/*_spec.rb
 Metrics/LineLength:
-  Enabled: false
-Metrics/MethodLength:
-  Enabled: false
+  Exclude:
+    - spec/**/*_spec.rb
 Style/Documentation:
   Enabled: false
 Style/FileName:
-  Enabled: false
-Style/RegexpLiteral:
   Enabled: false

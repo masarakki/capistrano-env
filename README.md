@@ -33,16 +33,17 @@ require 'capistrano/env'
 in `deploy.rb`
 
 ```ruby
-Capistrano::Env.use do |env|
+
+# New
+set :capenv, ->(env) {
   env.add /^MYAPP_/
   env.add /^MYAPP_/ do |key|
      key.gsub /^MYAPP_/, '' # replace keyname like MYAPP_DATABASE_URL => DATABASE_URL
   end
   env.add 'UNICORN_PROCESSES'
   env.add 'HOGE', 'hage'
-  env.formatter = :dotenv #=> default is :ruby, but it is deprecated now.
   env.filemode = 0644 #=> default is 0640.
-end
+}
 ```
 
 ### 2. deploy

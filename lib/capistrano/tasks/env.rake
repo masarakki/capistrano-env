@@ -2,12 +2,23 @@ namespace :capenv do
   desc 'copy .env to release_path'
   task :copy do
     on roles(:all) do
-      upload! StringIO.new(Capistrano::Env.to_s), "#{release_path}/#{Capistrano::Env.filename}", mode: Capistrano::Env.filemode
+      capenv = fetch(:capenv)
+      upload! StringIO.new(capenv.content),
+              File.join(fetch(:release_path), capenv.filename),
+              mode: capenv.filemode
     end
   end
 
   task :set_envs do
-    set :default_environment, Capistrano::Env.envs
+    capenv = Capistrano::Env::Config.new(&fetch(:capenv))
+    set :capenv, capenv
+    set :default_environment, capenv.envs
+  end
+end
+
+namespace :load do
+  task :defautls do
+    set :capenv, -> { ->(env) {} }
   end
 end
 
