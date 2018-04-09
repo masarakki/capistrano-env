@@ -4,30 +4,44 @@ module Capistrano
   module Env
     class Config
       include Capistrano::Env::Builder
-      attr_accessor :filemode
+      attr_accessor :filemode, :filename
+      attr_reader :envs
 
       def initialize
-        @values = {}
-        @keys = []
+        @envs = {}
         @filemode = '0640'
+        @filename = '.env'
+        yield(self) if block_given?
+      end
+
+      def inspect
+        envs
       end
 
       def add(name_or_regexp, val = nil, &block)
         if val && name_or_regexp.is_a?(String)
-          @values[name_or_regexp] = val
+          set_env(name_or_regexp, val)
         else
-          @keys << [name_or_regexp, block]
+          find_envs(name_or_regexp).each do |key, value|
+            set_env(key, value, &block)
+          end
         end
       end
 
-      def envs
-        result = {}
-        @keys.each do |key, block|
-          key_values = key.is_a?(Regexp) ? ENV.select { |x| x =~ key } : ENV.select { |x| x == key }
-          key_values = Hash[key_values.map { |k, v| [block.call(k), v] }] if block
-          result.merge!(key_values)
+      private
+
+      def set_env(key, value)
+        key = yield(key) if block_given?
+        @envs[key] = value
+      end
+
+      def find_envs(key)
+        case key
+        when Regexp
+          ENV.select { |x| x =~ key }
+        else
+          ENV.select { |x| x == key }
         end
-        result.merge(@values)
       end
     end
   end
