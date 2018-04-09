@@ -1,7 +1,6 @@
 require 'gem_helper'
-require 'capistrano/env'
 
-describe Capistrano::Env do
+RSpec.describe Capistrano::Env do
   before do
     Capistrano::Env.use do |env|
       env.add 'HELLO', 'WORLD'
